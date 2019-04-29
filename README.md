@@ -1,2 +1,2 @@
 # CppGame
-It's a little labyrinth building in C++
+It's a little labyrinth game builded in C++
