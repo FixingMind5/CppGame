@@ -35,7 +35,7 @@ void game_winned(Hero* Player){
   //cout << "      : \\ \\  \\  \\ .'   '  :  `--'  \\            :   '  |--'   \\  \\ .'   '   : |      " << endl;
   //cout << "      \\  ' ;    `---`     :  ,      .-./            \\  \\ ;        `---`     ;   |.'      " << endl;
   //cout << "        `--`                `--`----'                  '---'                   '---'        " << endl;
-  //cout << "Your Player.score" << Player.score << endl;
+  //cout << "Your Player -> score" << Player -> score << endl;
 }
 
 int print_menu(string* mapName){
@@ -70,14 +70,14 @@ int print_menu(string* mapName){
   return value;
 }
 
-void draw_map(class Hero Player, string map[11][15]) {
+void draw_map(Hero* Player, string map[11][15]) {
 
   for(int i = 0; i < 11 ; i++){
     for(int j = 0; j < 15; j++){
-      if (i != Player.position[0] /* && j != Player.position[0][1] */){
+      if (i != Player -> position[0] /* && j != Player -> position[0][1] */){
         cout << map[i][j];
       } else {
-        if (j != Player.position[1]){
+        if (j != Player -> position[1]){
           cout << map[i][j];
         }else{
           cout << "  H  ";
@@ -94,43 +94,43 @@ void change_position(char move, Hero* Player, bool* endGame, bool* gameWinned){
 
   switch (move) {
     case 'a':
-      if (map[Player.position[0]][(Player.position[1] - 1)] != "=====")
-        Player.position[1]--;
-      if (map[Player.position[0]][(Player.position[1])] == "  *  ") {
-        Player.score++;
-        map[Player.position[0]][Player.position[1]] = "     ";
+      if (map[Player -> position[0]][(Player -> position[1] - 1)] != "=====")
+        Player -> position[1]--;
+      if (map[Player -> position[0]][(Player -> position[1])] == "  *  ") {
+        Player -> score++;
+        map[Player -> position[0]][Player -> position[1]] = "     ";
       }
-      if (map[Player.position[0]][(Player.position[1])] == "  S  ")
+      if (map[Player -> position[0]][(Player -> position[1])] == "  S  ")
         {*gameWinned = true; *endGame = true;}
       break;
     case 'd':
-      if (map[Player.position[0]][(Player.position[1] + 1)] != "=====")
-        Player.position[1]++;
-      if (map[Player.position[0]][(Player.position[1])] == "  *  ") {
-        Player.score++;
-        map[Player.position[0]][Player.position[1]] = "     ";
+      if (map[Player -> position[0]][(Player -> position[1] + 1)] != "=====")
+        Player -> position[1]++;
+      if (map[Player -> position[0]][(Player -> position[1])] == "  *  ") {
+        Player -> score++;
+        map[Player -> position[0]][Player -> position[1]] = "     ";
       }
-      if (map[Player.position[0]][(Player.position[1])] == "  S  ")
+      if (map[Player -> position[0]][(Player -> position[1])] == "  S  ")
         {*gameWinned = true; *endGame = true;}
       break;
     case 's':
-      if (map[(Player.position[0] + 1)][Player.position[1]] != "=====")
-        Player.position[0]++;
-      if (map[(Player.position[0])][Player.position[1]] == "  *  ") {
-        Player.score++;
-        map[Player.position[0]][Player.position[1]] = "     ";
+      if (map[(Player -> position[0] + 1)][Player -> position[1]] != "=====")
+        Player -> position[0]++;
+      if (map[(Player -> position[0])][Player -> position[1]] == "  *  ") {
+        Player -> score++;
+        map[Player -> position[0]][Player -> position[1]] = "     ";
       }
-      if (map[Player.position[0]][(Player.position[1])] == "  S  ")
+      if (map[Player -> position[0]][(Player -> position[1])] == "  S  ")
         {*gameWinned = true; *endGame = true;}
       break;
     case 'w':
-      if (map[Player.position[0] - 1][(Player.position[1])] != "=====")
-        Player.position[0]--;
-      if (map[Player.position[0]][(Player.position[1])] == "  *  ") {
-        Player.score++;
-        map[Player.position[0]][Player.position[1]] = "     ";
+      if (map[Player -> position[0] - 1][(Player -> position[1])] != "=====")
+        Player -> position[0]--;
+      if (map[Player -> position[0]][(Player -> position[1])] == "  *  ") {
+        Player -> score++;
+        map[Player -> position[0]][Player -> position[1]] = "     ";
       }
-      if (map[Player.position[0]][(Player.position[1])] == "  S  ")
+      if (map[Player -> position[0]][(Player -> position[1])] == "  S  ")
         {*gameWinned = true; *endGame = true;}
       break;
     case 'p':
@@ -156,7 +156,7 @@ void save_game(string mapName, Hero* Player) {
   if (MyFile.is_open()) {
     for(int i = 0; i < 11 ; i++){
       for(int j = 0; j < 15; j++){
-        if (i != Player -> position[0] /* && j != Player.position[0][1] */){
+        if (i != Player -> position[0] /* && j != Player -> position[0][1] */){
           MyFile << map[i][j];
         } else {
           if (j != Player -> position[1]){
@@ -228,23 +228,23 @@ void start_game(int value, class Hero User){
 
     change_position(move, Player, &endGame, &gameWinned);
 
-    if (Player.position[0] == 0)
-      Player.position[0]++;
-    else if (Player.position[0] >= 10)
-      Player.position[0]--;
-    else if (Player.position[1] == 0)
-      Player.position[1]++;
-    else if (Player.position[1] >= 14)
-      Player.position[1]--;
+    if (Player -> position[0] == 0)
+      Player -> position[0]++;
+    else if (Player -> position[0] >= 10)
+      Player -> position[0]--;
+    else if (Player -> position[1] == 0)
+      Player -> position[1]++;
+    else if (Player -> position[1] >= 14)
+      Player -> position[1]--;
 
-    cout << "score: " << Player.score << endl;
+    cout << "score: " << Player -> score << endl;
     draw_map(Player, map);
-    cout << "X: " << Player.position[1] << "Y: "<< Player.position[0] << endl;
+    cout << "X: " << Player -> position[1] << "Y: "<< Player -> position[0] << endl;
 
   } while(!endGame);
 
   if (gameWinned == true) {
-    game_winned();
+    game_winned(Player);
   }
 
   //system("clear");
@@ -255,7 +255,7 @@ void start_game(int value, class Hero User){
     if (guardar == 'y') {
       cout << "Type the name of your game" << endl;
       cin >> mapName;
-      save_game(mapName);
+      save_game(mapName, Player);
       cout << "GameSaved" << endl;
     } else if (guardar == 'n') {
 
