@@ -5,7 +5,7 @@
 #include "PlayerHero.h"
 using namespace std;
 
-Hero* Player;
+//Hero* Player;
 
 string map[11][15];
 
@@ -18,7 +18,7 @@ string map[11][15];
   *userName = nickName;
 }*/
 
-void game_winned(){
+void game_winned(Hero* Player){
   system("clear");
 
   cout << "▓██   ██▓ ▒█████   █    ██     █     █░ ▒█████   ███▄    █ " << endl;
@@ -31,7 +31,7 @@ void game_winned(){
   cout << " ▒ ▒ ░░  ░ ░ ░ ▒   ░░░ ░ ░      ░   ░  ░ ░ ░ ▒     ░   ░ ░ " << endl;
   cout << " ░ ░         ░ ░     ░            ░        ░ ░           ░ " << endl;
   cout << " ░ ░                                                       "<< endl;
-  cout << "Your score: " << Player.score << endl;
+  cout << "Your score: " << Player -> score << endl;
   //cout << "      : \\ \\  \\  \\ .'   '  :  `--'  \\            :   '  |--'   \\  \\ .'   '   : |      " << endl;
   //cout << "      \\  ' ;    `---`     :  ,      .-./            \\  \\ ;        `---`     ;   |.'      " << endl;
   //cout << "        `--`                `--`----'                  '---'                   '---'        " << endl;
@@ -89,7 +89,7 @@ void draw_map(class Hero Player, string map[11][15]) {
 
 }
 
-void change_position(char move, class Hero Player, bool* endGame, bool* gameWinned){
+void change_position(char move, Hero* Player, bool* endGame, bool* gameWinned){
   char quit = 'f';
 
   switch (move) {
@@ -150,16 +150,16 @@ void change_position(char move, class Hero Player, bool* endGame, bool* gameWinn
   }
 }
 
-void save_game(string mapName) {
+void save_game(string mapName, Hero* Player) {
   ofstream MyFile(mapName + ".txt");
 
   if (MyFile.is_open()) {
     for(int i = 0; i < 11 ; i++){
       for(int j = 0; j < 15; j++){
-        if (i != Player.position[0] /* && j != Player.position[0][1] */){
+        if (i != Player -> position[0] /* && j != Player.position[0][1] */){
           MyFile << map[i][j];
         } else {
-          if (j != Player.position[1]){
+          if (j != Player -> position[1]){
             MyFile << map[i][j];
           }else{
             MyFile << "  H  ";
@@ -175,7 +175,7 @@ void save_game(string mapName) {
   MyFile.close();
 }
 
-void open_game(string mapName) {
+void open_game(string mapName, Hero* Player) {
   ifstream MyFileRead(mapName + ".txt");
   string lines;
   int row = 0, line = 0, k = 0;
@@ -188,8 +188,8 @@ void open_game(string mapName) {
         for(int j = 2; j < 7; j++){
           map[line][i] += lines[k + j];
           if(lines[k + j] == 'H') {
-            Player.position[0] = line;
-            Player.position[1] = i;
+            Player -> position[0] = line; //AQUÍ
+            Player -> position[1] = i; //AQUÍ
           }
         }
         k += 5;
@@ -204,6 +204,7 @@ void open_game(string mapName) {
 }
 
 void start_game(int value, class Hero User){
+  Hero* Player;
   *Player = User;
   char move; string mapName;
   char guardar = 'f';
@@ -212,12 +213,12 @@ void start_game(int value, class Hero User){
   if (value == 0) {
     cout << "Digite el nombre de su mapa" << endl;
     cin >> mapName;
-    open_game(mapName);
+    open_game(mapName, Player);
   } else {
-    open_game("DefaultGame");
+    open_game("DefaultGame", Player);
   }
 
-  map[Player.position[0]][Player.position[1]] = "     ";
+  map[Player -> position[0]][Player -> position[1]] = "     ";
 
   do {
     cout << ' ' << endl;
