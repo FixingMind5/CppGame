@@ -18,6 +18,23 @@ string map[11][15];
   *userName = nickName;
 }*/
 
+void cover(){
+  cout << "▄▄▄█████▓ ██░ ██ ▓█████     ██▓    ▄▄▄       ▄▄▄▄ ▓██   ██▓ ██▀███   ██▓ ███▄    █ ▄▄▄█████▓ ██░ ██ " << endl;
+  cout << "▓  ██▒ ▓▒▓██░ ██▒▓█   ▀    ▓██▒   ▒████▄    ▓█████▄▒██  ██▒▓██ ▒ ██▒▓██▒ ██ ▀█   █ ▓  ██▒ ▓▒▓██░ ██▒" << endl;
+  cout << "▒ ▓██░ ▒░▒██▀▀██░▒███      ▒██░   ▒██  ▀█▄  ▒██▒ ▄██▒██ ██░▓██ ░▄█ ▒▒██▒▓██  ▀█ ██▒▒ ▓██░ ▒░▒██▀▀██░" << endl;
+  cout << "░ ▓██▓ ░ ░▓█ ░██ ▒▓█  ▄    ▒██░   ░██▄▄▄▄██ ▒██░█▀  ░ ▐██▓░▒██▀▀█▄  ░██░▓██▒  ▐▌██▒░ ▓██▓ ░ ░▓█ ░██ " << endl;
+  cout << "  ▒██▒ ░ ░▓█▒░██▓░▒████▒   ░██████▒▓█   ▓██▒░▓█  ▀█▓░ ██▒▓░░██▓ ▒██▒░██░▒██░   ▓██░  ▒██▒ ░ ░▓█▒░██▓" << endl;
+  cout << "  ▒ ░░    ▒ ░░▒░▒░░ ▒░ ░   ░ ▒░▓  ░▒▒   ▓▒█░░▒▓███▀▒ ██▒▒▒ ░ ▒▓ ░▒▓░░▓  ░ ▒░   ▒ ▒   ▒ ░░    ▒ ░░▒░▒" << endl;
+  cout << "    ░     ▒ ░▒░ ░ ░ ░  ░   ░ ░ ▒  ░ ▒   ▒▒ ░▒░▒   ░▓██ ░▒░   ░▒ ░ ▒░ ▒ ░░ ░░   ░ ▒░    ░     ▒ ░▒░ ░" << endl;
+  cout << "  ░       ░  ░░ ░   ░        ░ ░    ░   ▒    ░    ░▒ ▒ ░░    ░░   ░  ▒ ░   ░   ░ ░   ░       ░  ░░ ░" << endl;
+  cout << "          ░  ░  ░   ░  ░       ░  ░     ░  ░ ░     ░ ░        ░      ░           ░           ░  ░  ░" << endl;
+  cout << "                                                  ░░ ░                                              " << endl;
+  cout << "                                            Press any button                                        " << endl;
+  cout << "                                              Then, enter.                                          " << endl;
+
+  getchar();
+}
+
 void game_winned(Hero* Player){
   system("clear");
 
@@ -42,10 +59,10 @@ int print_menu(string* mapName){
   //cout << l << endl;
   string game = "ew";
   int value = 1;
-  cout << "Welcome to my liberynth" << endl;
-  cout << "What do you wanna do?" << endl;
-  cout << "New game type \"new\" " << endl;
-  cout << "Reload game type \"reload\""<< endl;
+  cout << "\t\t\t\t\tWelcome to my liberynth" << endl;
+  cout << "\t\t\t\t\tWhat do you wanna do?" << endl;
+  cout << "\t\t\t\t\tNew game type \"new\" " << endl;
+  cout << "\t\t\t\t\tReload game type \"reload\""<< endl;
   while (game != "new" && game != "reload"){
     cin >> game;
     if (game == "new") {
@@ -58,14 +75,16 @@ int print_menu(string* mapName){
     }
   }
   system("clear");
-  cout << "Here's the controls" << endl;
-  cout << "[A] to move left" << endl;
-  cout << "[D] to move right" << endl;
-  cout << "[W] to move up" << endl;
-  cout << "[S] to move down" << endl;
-  cout << "[P] to end game" << endl;
-  cout << "Every move press enter" << endl;
-  cout << "Tap any button to start" << endl;
+  cout << "\t\t\t You're lost in this labyrinth" << endl;
+  cout << "\t\t\t So you need to pick all the starts and go out going to the 'S' " << endl;
+  cout << "\t\t\t\t\tHere's the controls" << endl;
+  cout << "\t\t\t\t\t[A] to move left" << endl;
+  cout << "\t\t\t\t\t[D] to move right" << endl;
+  cout << "\t\t\t\t\t[W] to move up" << endl;
+  cout << "\t\t\t\t\t[S] to move down" << endl;
+  cout << "\t\t\t\t\t[P] to end game" << endl;
+  cout << "\t\t\t\t\tEvery move press enter" << endl;
+  cout << "\t\t\t\t\tTap any button to start" << endl;
 
   return value;
 }
@@ -219,6 +238,9 @@ void start_game(int value, class Hero User){
   }
 
   map[Player -> position[0]][Player -> position[1]] = "     ";
+
+  cout << "Ready? Press any button then enter." << endl;
+  getchar();
 
   do {
     cout << ' ' << endl;

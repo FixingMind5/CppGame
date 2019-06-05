@@ -21,7 +21,7 @@ using namespace std;
 int main(){
   Hero Player("Rugo", 1, 13, 0);
   string mapName;
-  //Cover
+  cover();
   //Registration
   int value = print_menu(&mapName);
 
